@@ -10,6 +10,7 @@ function generarAleatorios() {
     let aleatorios = [];
     let cantidad;
     let indice;
+    let numero;
     let textoIngresado;
 
     textoIngresado = document.getElementById("txtCantidad").value;
@@ -17,6 +18,7 @@ function generarAleatorios() {
 
     if (textoIngresado == "" || cantidad < 5 || cantidad > 20) {
         mostrarTexto("mensaje", "Ingrese un número entre 5 y 20.");
+        mostrarTexto("contenedorResultados", "");
         return;
     }
 
@@ -24,5 +26,29 @@ function generarAleatorios() {
 
     for (indice = 0; indice < cantidad; indice++) {
         console.log(indice);
+
+        numero = generarNumeroAleatorio();
+        aleatorios.push(numero);
     }
+
+    mostrarResultados(aleatorios);
+}
+
+function mostrarResultados(arregloNumeros) {
+    let contenido;
+    let indice;
+
+    contenido = "<table>";
+    contenido += "<tr><th>Índice</th><th>Número aleatorio</th></tr>";
+
+    for (indice = 0; indice < arregloNumeros.length; indice++) {
+        contenido += "<tr>";
+        contenido += "<td>" + indice + "</td>";
+        contenido += "<td>" + arregloNumeros[indice] + "</td>";
+        contenido += "</tr>";
+    }
+
+    contenido += "</table>";
+
+    document.getElementById("contenedorResultados").innerHTML = contenido;
 }
